@@ -1,0 +1,41 @@
+{
+	"name": "lastro",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"lint:astro": "astro check",
+		"lint:tsc": "tsc",
+		"lint:prettier": "prettier --check --cache .",
+		"lint": "pnpm run \"/lint:./\"",
+		"format": "prettier --write --cache ."
+	},
+	"devDependencies": {
+		"@astrojs/check": "0.9.4",
+		"@tailwindcss/vite": "4.1.11",
+		"@types/hast": "3.0.4",
+		"astro": "5.12.8",
+		"hast-util-is-css-link": "3.0.1",
+		"prettier": "3.6.2",
+		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-tailwindcss": "0.6.14",
+		"rehype": "13.0.2",
+		"sharp": "0.34.3",
+		"tailwindcss": "4.1.11",
+		"typescript": "5.9.2",
+		"unist-util-visit": "5.0.0"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"packageManager": "pnpm@10.11.0",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@tailwindcss/oxide",
+			"esbuild",
+			"sharp"
+		]
+	}
+}

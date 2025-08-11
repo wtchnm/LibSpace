@@ -1,0 +1,5 @@
+{
+	"tab_size": 2,
+	"hard_tabs": true,
+	"lsp": { "vtsls": { "settings": { "autoUseWorkspaceTsdk": true } } }
+}
