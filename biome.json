@@ -1,0 +1,98 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true },
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on",
+				"useSortedAttributes": "on",
+				"useSortedProperties": "on"
+			}
+		},
+		"enabled": true
+	},
+	"formatter": { "enabled": true, "indentStyle": "tab", "expand": "never" },
+	"css": { "formatter": { "enabled": true, "quoteStyle": "single" } },
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "asNeeded",
+			"bracketSpacing": false,
+			"jsxQuoteStyle": "single",
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"trailingCommas": "none"
+		}
+	},
+	"linter": {
+		"domains": { "project": "all" },
+		"enabled": true,
+		"rules": {
+			"a11y": "error",
+			"complexity": "error",
+			"correctness": "error",
+			"nursery": "error",
+			"performance": "error",
+			"recommended": true,
+			"security": "error",
+			"style": "error",
+			"suspicious": "error"
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"useImportExtensions": "off",
+						"noUnusedImports": "off"
+					},
+					"nursery": {
+						"useExplicitType": "off",
+						"useForComponent": "off",
+						"noMagicNumbers": "off",
+						"useExportsLast": "off",
+						"noUnresolvedImports": "off",
+						"noUnknownAtRule": "off",
+						"noSecrets": {
+							"level": "error",
+							"options": { "entropyThreshold": 100 }
+						},
+						"useSortedClasses": { "level": "error", "fix": "safe" }
+					},
+					"suspicious": { "noReactSpecificProps": "off" },
+					"performance": { "noImgElement": "off", "noNamespaceImport": "off" },
+					"style": {
+						"useBlockStatements": "off",
+						"useNamingConvention": {
+							"level": "error",
+							"options": { "strictCase": false, "requireAscii": true }
+						},
+						"useFilenamingConvention": {
+							"level": "error",
+							"options": {
+								"strictCase": false,
+								"requireAscii": true,
+								"filenameCases": ["camelCase", "kebab-case", "PascalCase"]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["astro.config.ts"],
+			"linter": {
+				"rules": {
+					"correctness": { "noNodejsModules": "off" },
+					"style": { "noDefaultExport": "off" }
+				}
+			}
+		},
+		{
+			"includes": ["public/**"],
+			"formatter": { "enabled": false },
+			"linter": { "enabled": false }
+		}
+	]
+}

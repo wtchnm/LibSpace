@@ -1,8 +1,8 @@
-import { defineMiddleware } from 'astro:middleware'
-import type { Element, Root } from 'hast'
-import { isCssLink } from 'hast-util-is-css-link'
-import { rehype } from 'rehype'
-import { visit } from 'unist-util-visit'
+import {defineMiddleware} from 'astro:middleware'
+import type {Element, Root} from 'hast'
+import {isCssLink} from 'hast-util-is-css-link'
+import {rehype} from 'rehype'
+import {visit} from 'unist-util-visit'
 
 const rehypeInstance = rehype().use(() => (tree: Root) => {
 	let head: Element | undefined
@@ -16,6 +16,7 @@ const rehypeInstance = rehype().use(() => (tree: Root) => {
 				properties: {
 					rel: 'preload',
 					as: 'style',
+					// biome-ignore lint/complexity/useLiteralKeys: TS conflict
 					href: node.properties['href']
 				},
 				children: []
