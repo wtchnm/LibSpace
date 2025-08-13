@@ -3,11 +3,9 @@
   "workspaces": {
     "": {
       "name": "lastro",
-      "dependencies": {
-        "@astrojs/netlify": "^6.5.6",
-      },
       "devDependencies": {
         "@astrojs/check": "0.9.4",
+        "@astrojs/netlify": "6.5.6",
         "@biomejs/biome": "2.1.4",
         "@tailwindcss/vite": "4.1.11",
         "@types/hast": "3.0.4",
