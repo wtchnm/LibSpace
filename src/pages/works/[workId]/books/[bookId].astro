@@ -1,0 +1,50 @@
+
+---
+export const prerender = false
+
+import {Image} from 'astro:assets'
+import {getLiveEntry} from 'astro:content'
+import {setCacheHeaders} from '../../../../api/cache'
+import {BASE_URL} from '../../../../api/schema'
+import BookInfo from '../../../../components/BookInfo.astro'
+import Base from '../../../../layouts/Base.astro'
+
+const {workId = '', bookId = ''} = Astro.params
+const {entry, error, cacheHint} = await getLiveEntry('books', {workId, bookId})
+
+if (error) throw error
+if (!entry) return Astro.redirect('/404')
+setCacheHeaders(Astro, cacheHint)
+---
+
+<Base>
+	<main class="min-h-dvh flex gap-8 items-center justify-center">
+		<div class="grid gap-2">
+			<Image
+				width={213}
+				height={320}
+				src={entry.data.coverUrl}
+				alt={entry.data.title}
+				class='h-80 object-cover rounded-xl'
+				layout='constrained'
+			/>
+			<p class="text-slate-700 text-sm">
+				View full details at
+				<a class="underline text-slate-500" href={`${BASE_URL}/books/${entry.data.bookId}`
+} target="_blank" rel="noopener noreferrer">OpenLibrary</a>
+			</p>
+		</div>
+		<div class="flex flex-col gap-2 max-w-xl">
+			<h1 class="text-2xl font-bold text-slate-700">{entry.data.title}</h1>
+			<p class="text-slate-500">{entry.data.authors}</p>
+			<p class="text-slate-900">{entry.data.description}</p>
+			<p class="text-slate-500">{entry.data.subjects}</p>
+			<div class="flex gap-2 mt-4">
+				<BookInfo title="Publish date" value={entry.data.date} />
+				<BookInfo title="Pages" value={entry.data.pages} />
+				<BookInfo title="ISBN" value={entry.data.isbn} />
+				<BookInfo title="Publishers" value={entry.data.publishers} />
+			</div>
+		</div>
+	</main>
+</Base>

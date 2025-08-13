@@ -5,3 +5,6 @@ node_modules/
 .env.production
 .DS_Store
 tsconfig.tsbuildinfo
+
+# Local Netlify folder
+.netlify

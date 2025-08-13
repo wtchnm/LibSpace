@@ -1,0 +1,27 @@
+---
+import {Image} from 'astro:assets'
+import type {LiveDataEntry} from 'astro'
+import type {BookSchema} from '../api/schema'
+
+export interface Props {
+	book: LiveDataEntry<BookSchema>
+}
+
+// biome-ignore lint/correctness/noUnusedVariables: used in the template
+const {book} = Astro.props
+---
+
+<a
+	href={`works/${book.id}/books/${book.data.bookId}`}
+	class="flex flex-col gap-2 items-center text-center"
+>
+	<Image
+		width={133}
+		height={200}
+		src={book.data.coverUrl}
+		alt={book.data.title}
+		class='h-50 object-cover rounded-xl'
+		layout='constrained'
+	/>
+	<h2 class="text-slate-700">{book.data.title}</h2>
+</a>
