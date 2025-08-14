@@ -49,18 +49,17 @@
 					},
 					"nursery": {
 						"useExplicitType": "off",
-						"useForComponent": "off",
-						"noMagicNumbers": "off",
-						"useExportsLast": "off",
 						"noUnresolvedImports": "off",
-						"noUnknownAtRule": "off",
 						"noSecrets": {
 							"level": "error",
 							"options": { "entropyThreshold": 100 }
 						},
 						"useSortedClasses": { "level": "error", "fix": "safe" }
 					},
-					"suspicious": { "noReactSpecificProps": "off" },
+					"suspicious": {
+						"noReactSpecificProps": "off",
+						"noUnknownAtRules": "off"
+					},
 					"performance": { "noImgElement": "off", "noNamespaceImport": "off" },
 					"style": {
 						"useBlockStatements": "off",
@@ -72,7 +71,9 @@
 								"requireAscii": true,
 								"filenameCases": ["camelCase", "kebab-case", "PascalCase"]
 							}
-						}
+						},
+						"useExportsLast": "off",
+						"noMagicNumbers": "off"
 					}
 				}
 			}
