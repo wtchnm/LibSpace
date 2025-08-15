@@ -1,4 +1,4 @@
-import {z} from 'astro:content'
+import {z} from 'astro/zod'
 
 export const BASE_URL = 'https://openlibrary.org'
 export const TRENDING_URL = `${BASE_URL}/trending/daily.json?fields=key,title,editions,cover_i&limit=10`
