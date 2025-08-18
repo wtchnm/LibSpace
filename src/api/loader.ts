@@ -50,7 +50,7 @@ export async function buildFinalBook(workId: string, bookId: string) {
 		authors: authors.join(', '),
 		coverUrl: book.covers,
 		date: book.publish_date,
-		pages: book.number_of_pages,
+		pages: book.number_of_pages ?? book.pagination,
 		description: work.description ?? book.description,
 		isbn: book.isbn_13 ?? book.isbn_10
 	})

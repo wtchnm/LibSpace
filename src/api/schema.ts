@@ -15,7 +15,7 @@ export const BookSchema = z.object({
 	authors: z.string().optional().default('Authors not available'),
 	description: z.string().optional().default('Description not available'),
 	date: z.string().optional().default('Not available'),
-	pages: z.number().optional().default(0),
+	pages: z.coerce.string().optional().default('0'),
 	publishers: z.string().optional().default('Not available'),
 	isbn: z.string().optional().default('Not available'),
 	subjects: z.string().optional().default('Subjects not available')
@@ -69,6 +69,7 @@ export const BookResponseSchema = WorkResponseSchema.pick({
 }).extend({
 	publish_date: z.string().optional(),
 	number_of_pages: z.number().optional(),
+	pagination: z.string().optional(),
 	publishers: z
 		.array(z.string())
 		.transform(p => p.join(', '))
