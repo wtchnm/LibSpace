@@ -5,10 +5,11 @@ import type {BookSchema} from '../api/schema'
 
 export interface Props {
 	book: LiveDataEntry<BookSchema>
+	priority?: boolean
 }
 
 // biome-ignore lint/correctness/noUnusedVariables: used in the template
-const {book} = Astro.props
+const {book, priority = false} = Astro.props
 ---
 
 <a
@@ -22,8 +23,7 @@ const {book} = Astro.props
 		alt=''
 		class='h-50 object-cover rounded-xl'
 		layout='constrained'
-		loading='eager'
-		decoding='auto'
+		priority={priority}
 	/>
 	<h2 class="text-slate-700">{book.data.title}</h2>
 </a>

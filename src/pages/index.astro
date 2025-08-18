@@ -18,8 +18,8 @@ setCacheHeaders(Astro, cacheHint)
 		<h1 class="text-2xl font-bold">Trending</h1>
 
 		<div class="grid grid-cols-2 md:grid-cols-[repeat(5,calc(var(--spacing)*40))] gap-2 justify-center items-start">
-			{entries.map((book) => (
-				<TrendingBook book={book} />
+			{entries.map((book, index) => (
+				<TrendingBook book={book} priority={index === 0} />
 			))}
 		</div>
 	</main>
