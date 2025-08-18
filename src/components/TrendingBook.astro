@@ -19,9 +19,11 @@ const {book} = Astro.props
 		width={133}
 		height={200}
 		src={book.data.coverUrl}
-		alt={book.data.title}
+		alt=''
 		class='h-50 object-cover rounded-xl'
 		layout='constrained'
+		loading='eager'
+		decoding='auto'
 	/>
 	<h2 class="text-slate-700">{book.data.title}</h2>
 </a>
