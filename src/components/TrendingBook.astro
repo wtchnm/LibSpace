@@ -23,7 +23,8 @@ const {book, priority = false} = Astro.props
 		alt=''
 		class='h-50 object-cover rounded-xl'
 		layout='constrained'
-		priority={priority}
+		decoding={priority ? 'sync' : 'auto'}
+    fetchpriority={priority ? 'high' : 'auto'}
 	/>
 	<h2 class="text-slate-700">{book.data.title}</h2>
 </a>
