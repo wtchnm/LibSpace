@@ -23,6 +23,7 @@ const {book, priority = false} = Astro.props
 		alt=''
 		class='h-50 object-cover rounded-xl'
 		layout='constrained'
+		loading='eager'
 		decoding={priority ? 'sync' : 'auto'}
     fetchpriority={priority ? 'high' : 'auto'}
 	/>
