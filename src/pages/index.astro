@@ -14,10 +14,10 @@ setCacheHeaders(Astro, cacheHint)
 ---
 
 <Base>
-	<main class="min-h-dvh flex flex-col gap-8 items-center justify-center">
+	<main class="min-h-dvh flex flex-col gap-8 items-center justify-center py-8 px-4">
 		<h1 class="text-2xl font-bold">Trending</h1>
 
-		<div class="grid grid-cols-[repeat(5,calc(var(--spacing)*40))] gap-2 justify-center items-start">
+		<div class="grid grid-cols-2 md:grid-cols-[repeat(5,calc(var(--spacing)*40))] gap-2 justify-center items-start">
 			{entries.map((book) => (
 				<TrendingBook book={book} />
 			))}

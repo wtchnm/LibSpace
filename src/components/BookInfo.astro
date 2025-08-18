@@ -1,14 +1,25 @@
 ---
-export interface Props {
+export interface Props extends astroHTML.JSX.HTMLAttributes {
 	title: string
 	value: string | number
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: used in the template
-const {title, value} = Astro.props
+// biome-ignore-start lint/correctness/noUnusedVariables: used in the template
+const {
+	title,
+	value,
+	class: className,
+	'class:list': classList,
+	...rest
+} = Astro.props
+// biome-ignore-end lint/correctness/noUnusedVariables: used in the template
 ---
 
-<div class="py-1.5 px-3 border-slate-500 border rounded-xl">
+<div class:list={[
+	"py-1.5 px-3 border-slate-500 border rounded-xl",
+	className,
+	classList,
+]} {...rest}>
 	<p class="text-slate-500 text-sm">{title}</p>
 	<p>{value}</p>
 </div>
