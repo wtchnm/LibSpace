@@ -36,7 +36,7 @@ const FAVORITE_BOOKS = [
 		id: 'OL27513W',
 		bookId: 'OL26449223M',
 		title: 'The Fellowship of the Ring',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0008172083-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/8172083-L.jpg'
 	},
 	{
 		id: 'OL893415W',
@@ -48,31 +48,31 @@ const FAVORITE_BOOKS = [
 		id: 'OL8479867W',
 		bookId: 'OL35447857M',
 		title: 'The Name of the Wind',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0012391248-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/12391248-L.jpg'
 	},
 	{
 		id: 'OL15358691W',
 		bookId: 'OL24383834M',
 		title: 'The Way of Kings',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0014658322-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/14658322-L.jpg'
 	},
 	{
 		id: 'OL8369445W',
 		bookId: 'OL15987639M',
 		title: 'The Lies of Locke Lamora',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0012901690-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/12901690-L.jpg'
 	},
 	{
 		id: 'OL8400950W',
 		bookId: 'OL7878939M',
 		title: 'The Blade Itself',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0014543422-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/14543422-L.jpg'
 	},
 	{
 		id: 'OL2577482W',
 		bookId: 'OL19970603M',
 		title: 'The Last Wish',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0008747762-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/8747762-L.jpg'
 	}
 ]
 export function getFavoriteBooks() {

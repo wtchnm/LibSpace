@@ -17,12 +17,11 @@ const {book, priority = false} = Astro.props
 	class="flex flex-col gap-2 items-center text-center"
 >
 	<Image
-		width={133}
-		height={200}
+		width={213}
+		height={320}
 		src={book.data.coverUrl}
 		alt=''
-		class='h-50 object-cover rounded-xl'
-		layout='constrained'
+		class='w-32 h-50 object-cover rounded-xl'
 		loading='eager'
 		decoding={priority ? 'sync' : 'auto'}
     fetchpriority={priority ? 'high' : 'auto'}
