@@ -22,9 +22,9 @@ const FAVORITE_BOOKS = [
 	},
 	{
 		id: 'OL257943W',
-		bookId: 'OL257943W',
+		bookId: 'OL25420333M',
 		title: 'A Game of Thrones',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0011293305-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/14860650-L.jpg'
 	},
 	{
 		id: 'OL27482W',
@@ -70,9 +70,9 @@ const FAVORITE_BOOKS = [
 	},
 	{
 		id: 'OL2577482W',
-		bookId: 'OL10426195M',
+		bookId: 'OL19970603M',
 		title: 'The Last Wish',
-		coverUrl: 'https://covers.openlibrary.org/b/id/0012848705-L.jpg'
+		coverUrl: 'https://covers.openlibrary.org/b/id/0008747762-L.jpg'
 	}
 ]
 export function getFavoriteBooks() {
@@ -110,7 +110,7 @@ export async function buildFinalBook(workId: string, bookId: string) {
 		coverUrl: book.covers,
 		date: book.publish_date,
 		pages: book.number_of_pages ?? book.pagination,
-		description: work.description ?? book.description,
+		description: book.description ?? work.description,
 		isbn: book.isbn_13 ?? book.isbn_10
 	})
 }
