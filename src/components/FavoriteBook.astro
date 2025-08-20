@@ -24,7 +24,8 @@ const {book, priority = false} = Astro.props
 		class='w-32 h-50 object-cover rounded-xl'
 		loading='eager'
 		decoding={priority ? 'sync' : 'auto'}
-    fetchpriority={priority ? 'high' : 'auto'}
+		fetchpriority={priority ? 'high' : 'auto'}
+		transition:name={`cover-${book.data.id}`}
 	/>
 	<h2 class="text-slate-700">{book.data.title}</h2>
 </a>

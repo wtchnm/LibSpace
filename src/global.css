@@ -3,3 +3,8 @@
 @theme {
 	--font-sans: Inter, 'Inter fallback';
 }
+
+@view-transition {
+	/* biome-ignore lint/correctness/noUnknownProperty: experimental */
+	navigation: auto;
+}

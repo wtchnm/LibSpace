@@ -15,8 +15,8 @@ LibSpace exists primarily to **explore and demonstrate Astro's most experimental
 - Tailwind CSS v4 + TypeScript 5 + Biome V2
 
 ### Features: in progress
-- **View Transitions** - Native browser transitions for SPA-like navigation
-- **Authentication System** - User registration, login, and session management
-- **Astro DB Integration** - User profiles, reading shelves, progress tracking
-- **Server Actions** - Add to shelf, update status, submit reviews
-- **Interactive Islands** - Web Components → Solid.js component migration
+- [x] **View Transitions** - Native browser transitions for SPA-like navigation
+- [ ] **Authentication System** - User registration, login, and session management
+- [ ] **Astro DB Integration** - User profiles, reading shelves, progress tracking
+- [ ] **Server Actions** - Add to shelf, update status, submit reviews
+- [ ] **Interactive Islands** - Web Components → Solid.js component migration
