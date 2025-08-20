@@ -1,39 +1,98 @@
+import {z} from 'astro/zod'
 import {
 	AuthorResponseSchema,
 	BASE_URL,
 	BOOK_URL,
 	BookResponseSchema,
 	BookSchema,
-	TRENDING_URL,
-	TrendingResponseSchema,
 	WORK_URL,
 	WorkResponseSchema
 } from './schema'
 
-const fetchInit: RequestInit = {
+const REQUEST_INIT: RequestInit = {
 	headers: {'User-Agent': 'Shelf/1.0 (wtchnm@icloud.com)'}
 }
 
-export async function getTrendingBooks() {
-	const request = await fetch(TRENDING_URL, fetchInit)
-	const data = await request.json()
-	return TrendingResponseSchema.parse(data)
+const FAVORITE_BOOKS = [
+	{
+		id: 'OL82563W',
+		bookId: 'OL26629979M',
+		title: "Harry Potter and the Philosopher's Stone",
+		coverUrl: 'https://covers.openlibrary.org/b/id/15109429-L.jpg'
+	},
+	{
+		id: 'OL257943W',
+		bookId: 'OL257943W',
+		title: 'A Game of Thrones',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0011293305-L.jpg'
+	},
+	{
+		id: 'OL27482W',
+		bookId: 'OL51709286M',
+		title: 'The Hobbit',
+		coverUrl: 'https://covers.openlibrary.org/b/id/14627222-L.jpg'
+	},
+	{
+		id: 'OL27513W',
+		bookId: 'OL26449223M',
+		title: 'The Fellowship of the Ring',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0008172083-L.jpg'
+	},
+	{
+		id: 'OL893415W',
+		bookId: 'OL26242482M',
+		title: 'Dune',
+		coverUrl: 'https://covers.openlibrary.org/b/id/15092781-L.jpg'
+	},
+	{
+		id: 'OL8479867W',
+		bookId: 'OL35447857M',
+		title: 'The Name of the Wind',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0012391248-L.jpg'
+	},
+	{
+		id: 'OL15358691W',
+		bookId: 'OL24383834M',
+		title: 'The Way of Kings',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0014658322-L.jpg'
+	},
+	{
+		id: 'OL8369445W',
+		bookId: 'OL15987639M',
+		title: 'The Lies of Locke Lamora',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0012901690-L.jpg'
+	},
+	{
+		id: 'OL8400950W',
+		bookId: 'OL7878939M',
+		title: 'The Blade Itself',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0014543422-L.jpg'
+	},
+	{
+		id: 'OL2577482W',
+		bookId: 'OL10426195M',
+		title: 'The Last Wish',
+		coverUrl: 'https://covers.openlibrary.org/b/id/0012848705-L.jpg'
+	}
+]
+export function getFavoriteBooks() {
+	return z.array(BookSchema).parse(FAVORITE_BOOKS)
 }
 
 async function getWork(id: string) {
-	const request = await fetch(WORK_URL.replace(':id', id), fetchInit)
+	const request = await fetch(WORK_URL.replace(':id', id), REQUEST_INIT)
 	const data = await request.json()
 	return WorkResponseSchema.parse(data)
 }
 
 async function getBook(id: string) {
-	const request = await fetch(BOOK_URL.replace(':id', id), fetchInit)
+	const request = await fetch(BOOK_URL.replace(':id', id), REQUEST_INIT)
 	const data = await request.json()
 	return BookResponseSchema.parse(data)
 }
 
 async function getAuthor(id: string) {
-	const request = await fetch(`${BASE_URL}${id}.json`, fetchInit)
+	const request = await fetch(`${BASE_URL}${id}.json`, REQUEST_INIT)
 	const data = await request.json()
 	return AuthorResponseSchema.parse(data)
 }

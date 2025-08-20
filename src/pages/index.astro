@@ -3,7 +3,7 @@ export const prerender = false
 
 import {getLiveCollection} from 'astro:content'
 import {setCacheHeaders} from '../api/cache'
-import TrendingBook from '../components/TrendingBook.astro'
+import FavoriteBook from '../components/FavoriteBook.astro'
 import Base from '../layouts/Base.astro'
 
 const {entries, error, cacheHint} = await getLiveCollection('books')
@@ -15,11 +15,11 @@ setCacheHeaders(Astro, cacheHint)
 
 <Base>
 	<main class="min-h-dvh flex flex-col gap-8 items-center justify-center py-8 px-4">
-		<h1 class="text-2xl font-bold">Trending</h1>
+		<h1 class="text-2xl font-bold">Favorites</h1>
 
 		<div class="grid grid-cols-2 md:grid-cols-[repeat(5,calc(var(--spacing)*40))] gap-2 justify-center items-start">
 			{entries.map((book, index) => (
-				<TrendingBook book={book} priority={index === 0} />
+				<FavoriteBook book={book} priority={index === 0} />
 			))}
 		</div>
 	</main>

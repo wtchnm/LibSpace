@@ -1,7 +1,6 @@
 import {z} from 'astro/zod'
 
 export const BASE_URL = 'https://openlibrary.org'
-export const TRENDING_URL = `${BASE_URL}/trending/daily.json?fields=key,title,editions,cover_i&limit=10`
 export const WORK_URL = `${BASE_URL}/works/:id.json`
 export const BOOK_URL = `${BASE_URL}/books/:id.json`
 
@@ -21,28 +20,6 @@ export const BookSchema = z.object({
 	subjects: z.string().optional().default('Subjects not available')
 })
 export type BookSchema = z.infer<typeof BookSchema>
-
-export const TrendingResponseSchema = z
-	.object({
-		works: z.array(
-			z.object({
-				key: z.string().transform(k => k.replace('/works/', '')),
-				editions: z.object({
-					docs: z.array(
-						z.object({
-							key: z.string().transform(k => k.replace('/books/', '')),
-							title: z.string().optional(),
-							cover_i: z
-								.number()
-								.transform(id => COVER_URL.replace(':id', id.toString()))
-								.optional()
-						})
-					)
-				})
-			})
-		)
-	})
-	.transform(d => d.works)
 
 export const WorkResponseSchema = BookSchema.pick({title: true}).extend({
 	description: z
