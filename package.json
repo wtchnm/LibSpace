@@ -14,11 +14,11 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
-		"@astrojs/netlify": "6.5.6",
+		"@astrojs/netlify": "6.5.7",
 		"@biomejs/biome": "2.2.0",
 		"@tailwindcss/vite": "4.1.12",
 		"@types/hast": "3.0.4",
-		"astro": "5.13.0",
+		"astro": "5.13.2",
 		"hast-util-is-css-link": "3.0.1",
 		"rehype": "13.0.2",
 		"sharp": "0.34.3",
