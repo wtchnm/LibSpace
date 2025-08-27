@@ -42,6 +42,7 @@ export const WorkResponseSchema = BookSchema.pick({title: true}).extend({
 })
 
 export const BookResponseSchema = WorkResponseSchema.pick({
+	title: true,
 	description: true
 }).extend({
 	publish_date: z.string().optional(),

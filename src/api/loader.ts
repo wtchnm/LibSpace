@@ -15,10 +15,16 @@ const REQUEST_INIT: RequestInit = {
 
 const FAVORITE_BOOKS = [
 	{
+		id: 'OL2577482W',
+		bookId: 'OL19970603M',
+		title: 'The Last Wish',
+		coverUrl: 'https://covers.openlibrary.org/b/id/8747762-L.jpg'
+	},
+	{
 		id: 'OL82563W',
-		bookId: 'OL26629979M',
-		title: "Harry Potter and the Philosopher's Stone",
-		coverUrl: 'https://covers.openlibrary.org/b/id/15109429-L.jpg'
+		bookId: 'OL39492768M',
+		title: "Harry Potter and the Sorcerer's Stone",
+		coverUrl: 'https://covers.openlibrary.org/b/id/14656853-L.jpg'
 	},
 	{
 		id: 'OL257943W',
@@ -67,12 +73,6 @@ const FAVORITE_BOOKS = [
 		bookId: 'OL7878939M',
 		title: 'The Blade Itself',
 		coverUrl: 'https://covers.openlibrary.org/b/id/14543422-L.jpg'
-	},
-	{
-		id: 'OL2577482W',
-		bookId: 'OL19970603M',
-		title: 'The Last Wish',
-		coverUrl: 'https://covers.openlibrary.org/b/id/8747762-L.jpg'
 	}
 ]
 export function getFavoriteBooks() {
