@@ -1,0 +1,19 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	variant?: 'primary' | 'secondary'
+}
+const { variant = 'primary', ...rest } = Astro.props
+---
+
+<a
+	class:list={[
+		'rounded-lg border px-4 py-2 text-center',
+		{
+			'border-slate-500 text-slate-700': variant === 'primary',
+			'border-slate-700 bg-slate-700 text-white': variant === 'secondary'
+		}
+	]}
+	{...rest}
+>
+	<slot />
+</a>

@@ -18,8 +18,8 @@ LibSpace exists primarily to **explore and demonstrate Astro's most experimental
 ### Features: in progress
 
 - [x] **View Transitions** - Native browser transitions for SPA-like navigation
+- [x] **Authentication System** - User registration, login, and session management
 - [ ] **PWA Support** - Web App Manifest, Service Workers, and caching
-- [ ] **Authentication System** - User registration, login, and session management
 - [ ] **Astro DB Integration** - User profiles, reading shelves, progress tracking
 - [ ] **Server Actions** - Add to shelf, update status, submit reviews
 - [ ] **Interactive Islands** - Web Components → Solid.js component migration

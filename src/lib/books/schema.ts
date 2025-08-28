@@ -1,8 +1,8 @@
 import { z } from 'astro/zod'
 
-export const BASE_URL = 'https://openlibrary.org'
-export const WORK_URL = `${BASE_URL}/works/:id.json`
-export const BOOK_URL = `${BASE_URL}/books/:id.json`
+export const OPEN_LIBRARY_URL = 'https://openlibrary.org'
+export const WORK_URL = `${OPEN_LIBRARY_URL}/works/:id.json`
+export const BOOK_URL = `${OPEN_LIBRARY_URL}/books/:id.json`
 
 const COVER_URL = 'https://covers.openlibrary.org/b/id/:id-L.jpg'
 
@@ -20,6 +20,8 @@ export const BookSchema = z.object({
 	subjects: z.string().optional().default('Subjects not available')
 })
 export type BookSchema = z.infer<typeof BookSchema>
+
+export const FavoriteBooksResponseSchema = z.array(BookSchema)
 
 export const WorkResponseSchema = BookSchema.pick({ title: true }).extend({
 	description: z

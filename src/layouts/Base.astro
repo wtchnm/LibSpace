@@ -1,5 +1,8 @@
 ---
-import '../global.css'
+import Avatar from '../components/Avatar.astro'
+import '../styles/global.css'
+
+const isAuthPage = Astro.url.pathname.startsWith('/auth')
 ---
 
 <!doctype html>
@@ -39,7 +42,15 @@ import '../global.css'
 			}
 		</style>
 	</head>
-	<body>
+	<body class='flex min-h-dvh flex-col'>
+		<header
+			class='flex h-16 w-full items-center justify-center border-b border-slate-300'
+		>
+			<nav class='flex w-full max-w-7xl items-center justify-between px-4'>
+				<a href='/' class='text-2xl font-bold'>LibSpace</a>
+				{!isAuthPage && <Avatar />}
+			</nav>
+		</header>
 		<slot />
 	</body>
 </html>
