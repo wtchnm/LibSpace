@@ -9,12 +9,14 @@ LibSpace exists primarily to **explore and demonstrate Astro's most experimental
 ## Current Status
 
 ### Foundation: complete
+
 - Astro 5 with experimental Live Collections
 - Open Library API integration with intelligent caching
 - Performance-optimized rendering (image prioritization, lazy loading)
 - Tailwind CSS v4 + TypeScript 5 + Biome V2
 
 ### Features: in progress
+
 - [x] **View Transitions** - Native browser transitions for SPA-like navigation
 - [ ] **PWA Support** - Web App Manifest, Service Workers, and caching
 - [ ] **Authentication System** - User registration, login, and session management

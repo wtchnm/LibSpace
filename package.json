@@ -6,25 +6,31 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"lint:biome": "biome check",
+		"lint:prettier": "prettier --check --cache .",
 		"lint:astro": "astro check",
 		"lint:tsc": "tsc",
-		"lint": "bun run lint:astro && bun run lint:tsc && bun run lint:biome",
-		"format": "biome format --write"
+		"lint": "bun run lint:astro && bun run lint:tsc && bun run lint:prettier",
+		"format": "prettier --write --cache ."
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
 		"@astrojs/netlify": "6.5.7",
-		"@biomejs/biome": "2.2.0",
 		"@tailwindcss/vite": "4.1.12",
 		"@types/hast": "3.0.4",
 		"astro": "5.13.2",
 		"hast-util-is-css-link": "3.0.1",
+		"prettier": "3.6.2",
+		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-tailwindcss": "0.6.14",
 		"rehype": "13.0.2",
 		"sharp": "0.34.3",
 		"tailwindcss": "4.1.12",
 		"typescript": "5.9.2",
 		"unist-util-visit": "5.0.0"
 	},
-	"trustedDependencies": ["@tailwindcss/oxide", "esbuild", "sharp"]
+	"trustedDependencies": [
+		"@tailwindcss/oxide",
+		"esbuild",
+		"sharp"
+	]
 }

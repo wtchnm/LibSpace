@@ -1,4 +1,4 @@
-import {z} from 'astro/zod'
+import { z } from 'astro/zod'
 import {
 	AuthorResponseSchema,
 	BASE_URL,
@@ -10,7 +10,7 @@ import {
 } from './schema'
 
 const REQUEST_INIT: RequestInit = {
-	headers: {'User-Agent': 'Shelf/1.0 (wtchnm@icloud.com)'}
+	headers: { 'User-Agent': 'Shelf/1.0 (wtchnm@icloud.com)' }
 }
 
 const FAVORITE_BOOKS = [

@@ -5,6 +5,5 @@
 }
 
 @view-transition {
-	/* biome-ignore lint/correctness/noUnknownProperty: experimental */
 	navigation: auto;
 }

@@ -1,4 +1,4 @@
-import {z} from 'astro/zod'
+import { z } from 'astro/zod'
 
 export const BASE_URL = 'https://openlibrary.org'
 export const WORK_URL = `${BASE_URL}/works/:id.json`
@@ -21,10 +21,10 @@ export const BookSchema = z.object({
 })
 export type BookSchema = z.infer<typeof BookSchema>
 
-export const WorkResponseSchema = BookSchema.pick({title: true}).extend({
+export const WorkResponseSchema = BookSchema.pick({ title: true }).extend({
 	description: z
 		.string()
-		.or(z.object({value: z.string()}))
+		.or(z.object({ value: z.string() }))
 		.transform(d => {
 			const value = typeof d === 'string' ? d : d.value
 			if (value.length > 736) return `${value.slice(0, 736)}...`
@@ -32,7 +32,7 @@ export const WorkResponseSchema = BookSchema.pick({title: true}).extend({
 		})
 		.optional(),
 	authors: z
-		.array(z.object({author: z.object({key: z.string()})}))
+		.array(z.object({ author: z.object({ key: z.string() }) }))
 		.transform(a => a.map(author => author.author.key))
 		.optional(),
 	subjects: z
@@ -66,5 +66,5 @@ export const BookResponseSchema = WorkResponseSchema.pick({
 })
 
 export const AuthorResponseSchema = z
-	.object({name: z.string()})
+	.object({ name: z.string() })
 	.transform(a => a.name)

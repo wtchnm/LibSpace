@@ -1,4 +1,4 @@
-import type {AstroGlobal, CacheHint} from 'astro'
+import type { AstroGlobal, CacheHint } from 'astro'
 
 export const SIX_MONTHS_IN_SECONDS = 60 * 60 * 24 * 180
 

@@ -1,31 +1,30 @@
 ---
-import {Image} from 'astro:assets'
-import type {LiveDataEntry} from 'astro'
-import type {BookSchema} from '../api/schema'
+import { Image } from 'astro:assets'
+import type { LiveDataEntry } from 'astro'
+import type { BookSchema } from '../api/schema'
 
 export interface Props {
 	book: LiveDataEntry<BookSchema>
 	priority?: boolean
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: used in the template
-const {book, priority = false} = Astro.props
+const { book, priority = false } = Astro.props
 ---
 
 <a
 	href={`works/${book.id}/books/${book.data.bookId}`}
-	class="flex flex-col gap-2 items-center text-center"
+	class='flex flex-col items-center gap-2 text-center'
 >
 	<Image
 		width={220}
 		height={320}
 		src={book.data.coverUrl}
 		alt=''
-		class='w-32 h-50 object-cover rounded-xl'
+		class='h-50 w-32 rounded-xl object-cover'
 		loading='eager'
 		decoding={priority ? 'sync' : 'auto'}
 		fetchpriority={priority ? 'high' : 'auto'}
 		transition:name={`cover-${book.data.id}`}
 	/>
-	<h2 class="text-slate-700">{book.data.title}</h2>
+	<h2 class='text-slate-700'>{book.data.title}</h2>
 </a>

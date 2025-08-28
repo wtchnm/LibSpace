@@ -4,7 +4,6 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	value: string | number
 }
 
-// biome-ignore-start lint/correctness/noUnusedVariables: used in the template
 const {
 	title,
 	value,
@@ -12,14 +11,16 @@ const {
 	'class:list': classList,
 	...rest
 } = Astro.props
-// biome-ignore-end lint/correctness/noUnusedVariables: used in the template
 ---
 
-<div class:list={[
-	"py-1.5 px-3 border-slate-500 border rounded-lg",
-	className,
-	classList,
-]} {...rest}>
-	<p class="text-slate-500 text-sm">{title}</p>
+<div
+	class:list={[
+		'rounded-lg border border-slate-500 px-3 py-1.5',
+		className,
+		classList
+	]}
+	{...rest}
+>
+	<p class='text-sm text-slate-500'>{title}</p>
 	<p>{value}</p>
 </div>
