@@ -1,25 +1,72 @@
 # LibSpace
 
-An experimental social reading platform showcasing cutting-edge **Astro 5** features and APIs, built around the Open Library ecosystem. Generated from [wtchnm/Lastro](https://github.com/wtchnm/Lastro).
+A social reading platform for discovering, tracking, and discussing your favorite books.
 
-## Mission
+[Live Demo](http://libspace.netlify.app)
 
-LibSpace exists primarily to **explore and demonstrate Astro's most experimental and groundbreaking APIs**. This project serves as a testing ground for bleeding-edge features like Live Content Collections, Server Actions, DB, and advanced SSR capabilities—pushing the boundaries of what's possible with modern web frameworks.
+![Screenshot of LibSpace](screenshot.jpg)
 
-## Current Status
+## Project Goals
 
-### Foundation: complete
+This project was built to explore a **server-first, progressively enhanced** architecture for modern web applications. The key objectives were:
 
-- Astro 5 with experimental Live Collections
-- Open Library API integration with intelligent caching
-- Performance-optimized rendering (image prioritization, lazy loading)
-- Tailwind CSS v4 + TypeScript 5 + Biome V2
+- **Minimize Client-Side Complexity:** Build a robust and secure application by handling authentication, sessions, and data mutations almost entirely on the server.
+- **Embrace Progressive Enhancement:** Ensure the core experience is functional with zero JavaScript, while layering on modern, real-time features for capable browsers.
+- **Prioritize Developer Experience:** Leverage end-to-end type safety and a component-based architecture to create a maintainable and scalable codebase.
 
-### Features: in progress
+## Getting Started
 
-- [x] **View Transitions** - Native browser transitions for SPA-like navigation
-- [x] **Authentication System** - User registration, login, and session management
-- [ ] **PWA Support** - Web App Manifest, Service Workers, and caching
-- [ ] **Astro DB Integration** - User profiles, reading shelves, progress tracking
-- [ ] **Server Actions** - Add to shelf, update status, submit reviews
-- [ ] **Interactive Islands** - Web Components → Solid.js component migration
+### Prerequisites
+
+- **Bun:** This project uses Bun as its runtime and package manager. You can find installation instructions at https://bun.sh.
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/wtchnm/LibSpace.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd libspace
+    ```
+3.  Install the dependencies:
+    ```bash
+    bun install
+    ```
+4.  Run the development server:
+    ```bash
+    bun run dev
+    ```
+
+## Tech Stack
+
+- **Astro 5** - Live Collections & Server Actions
+- **Better Auth** - Server-side authentication
+- **Astro DB** - Turso/SQLite persistence
+- **Open Library API** - Book data integration
+- **Tailwind CSS v4** + TypeScript
+
+## Features
+
+### ✅ Completed
+
+- **Server-side authentication** - Pure server-side forms and sessions
+- **Type-safe actions** - Full TypeScript form validation
+- **Live content collections** - Dynamic book data loading
+- **Progressive enhancement** - JavaScript-optional by design
+- **Performance optimization** - Intelligent caching and lazy loading
+
+### 🚧 Planned
+
+- **PWA capabilities** - Offline support and app-like experience
+- **User profiles** - Personal shelves and reading progress
+- **Social features** - Reviews, recommendations, and reading lists
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue.
+
+## License
+
+MIT
