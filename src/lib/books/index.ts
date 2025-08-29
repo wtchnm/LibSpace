@@ -2,7 +2,7 @@ import type { LiveDataCollection, LiveDataEntry } from 'astro'
 import type { BookSchema } from './schema'
 import type { LiveLoader } from 'astro/loaders'
 import { buildFinalBook, getFavoriteBooks } from './api'
-import { SIX_MONTHS_IN_SECONDS } from '../utils'
+import { SIX_MONTHS_IN_SECONDS } from '@/lib/utils'
 
 // Cache for dev server
 const cache = new Map<

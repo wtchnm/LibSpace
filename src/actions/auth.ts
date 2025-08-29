@@ -1,6 +1,6 @@
 import { defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
-import { auth } from '../lib/auth'
+import { auth } from '@/lib/auth'
 
 const SignInSchema = z.object({
 	email: z.string().email(),

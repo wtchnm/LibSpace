@@ -3,10 +3,10 @@ export const prerender = false
 
 import { Image } from 'astro:assets'
 import { getLiveEntry } from 'astro:content'
-import { setCacheHeaders } from '../../../../lib/utils'
-import { OPEN_LIBRARY_URL } from '../../../../lib/books/schema'
-import BookInfo from '../../../../components/BookInfo.astro'
-import Base from '../../../../layouts/Base.astro'
+import { setCacheHeaders } from '@/lib/utils'
+import { OPEN_LIBRARY_URL } from '@/lib/books/schema'
+import BookInfo from '@/components/BookInfo.astro'
+import Base from '@/layouts/Base.astro'
 
 const { workId = '', bookId = '' } = Astro.params
 const { entry, error, cacheHint } = await getLiveEntry('books', {

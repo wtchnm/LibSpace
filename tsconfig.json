@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"noUncheckedSideEffectImports": true,
 		"noPropertyAccessFromIndexSignature": true,
-		"incremental": true
+		"incremental": true,
+		"baseUrl": ".",
+		"paths": { "@/*": ["src/*"] }
 	},
 	"include": [".astro/types.d.ts", "**/*"],
 	"exclude": ["dist"]

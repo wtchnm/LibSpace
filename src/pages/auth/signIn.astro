@@ -2,11 +2,11 @@
 export const prerender = false
 
 import { actions } from 'astro:actions'
-import Button from '../../components/Button.astro'
-import Input from '../../components/Input.astro'
-import Link from '../../components/Link.astro'
-import Base from '../../layouts/Base.astro'
-import { _redirectWithHeaders } from '../../lib/utils'
+import Button from '@/components/Button.astro'
+import Input from '@/components/Input.astro'
+import Link from '@/components/Link.astro'
+import Base from '@/layouts/Base.astro'
+import { _redirectWithHeaders } from '@/lib/utils'
 
 const result = Astro.getActionResult(actions.auth.signIn)
 if (result && !result.error) return _redirectWithHeaders(result.data.headers)

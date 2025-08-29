@@ -1,6 +1,6 @@
 import { actions } from 'astro:actions'
 import type { APIRoute } from 'astro'
-import { _redirectWithHeaders } from '../../lib/utils'
+import { _redirectWithHeaders } from '@/lib/utils'
 
 export const prerender = false
 
