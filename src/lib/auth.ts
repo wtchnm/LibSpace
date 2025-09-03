@@ -13,5 +13,6 @@ export const auth = betterAuth({
 		}
 	}),
 	emailAndPassword: { enabled: true },
+	advanced: { useSecureCookies: import.meta.env.PROD },
 	session: { cookieCache: { enabled: true, maxAge: 5 * 60 } }
 })

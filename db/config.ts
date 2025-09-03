@@ -1,3 +1,4 @@
+import { SHELF_STATUS_ENUM } from '@/lib/shelf'
 import { column, defineDb, defineTable } from 'astro:db'
 
 const User = defineTable({
@@ -54,4 +55,17 @@ const Verification = defineTable({
 	}
 })
 
-export default defineDb({ tables: { User, Session, Account, Verification } })
+const Shelf = defineTable({
+	columns: {
+		id: column.text({ primaryKey: true }),
+		status: column.text({ enum: SHELF_STATUS_ENUM }),
+		userId: column.text({ references: () => User.columns.id }),
+		bookId: column.text(),
+		createdAt: column.date(),
+		updatedAt: column.date()
+	}
+})
+
+export default defineDb({
+	tables: { User, Session, Account, Verification, Shelf }
+})
