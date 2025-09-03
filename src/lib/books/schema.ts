@@ -8,9 +8,9 @@ const COVER_URL = 'https://covers.openlibrary.org/b/id/:id-L.jpg'
 
 export const BookSchema = z.object({
 	id: z.string(),
+	workId: z.string(),
 	title: z.string().optional().default('Title not available'),
 	coverUrl: z.string().optional().default('/not-found.png'),
-	bookId: z.string().optional(),
 	authors: z.string().optional().default('Authors not available'),
 	description: z.string().optional().default('Description not available'),
 	date: z.string().optional().default('Not available'),
@@ -21,7 +21,7 @@ export const BookSchema = z.object({
 })
 export type BookSchema = z.infer<typeof BookSchema>
 
-export const FavoriteBooksResponseSchema = z.array(BookSchema)
+export const TrendingBooksResponseSchema = z.array(BookSchema)
 
 export const WorkResponseSchema = BookSchema.pick({ title: true }).extend({
 	description: z

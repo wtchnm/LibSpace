@@ -1,7 +1,7 @@
 import type { LiveDataCollection, LiveDataEntry } from 'astro'
 import type { BookSchema } from './schema'
 import type { LiveLoader } from 'astro/loaders'
-import { buildFinalBook, getFavoriteBooks } from './api'
+import { buildFinalBook, getTrendingBooks } from './api'
 import { SIX_MONTHS_IN_SECONDS } from '@/lib/utils'
 
 // Cache for dev server
@@ -15,7 +15,7 @@ export const bookLoader: LiveLoader<
 > = {
 	name: 'books',
 	async loadCollection() {
-		const response = getFavoriteBooks()
+		const response = await getTrendingBooks()
 		const collection: LiveDataCollection<BookSchema> = {
 			entries: response.map(book => ({ id: book.id, data: book })),
 			cacheHint: { maxAge: SIX_MONTHS_IN_SECONDS }

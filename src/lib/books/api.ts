@@ -1,10 +1,10 @@
-import { FAVORITE_BOOKS } from './data'
+import { db, Trending } from 'astro:db'
 import {
 	AuthorResponseSchema,
 	BOOK_URL,
 	BookResponseSchema,
 	BookSchema,
-	FavoriteBooksResponseSchema,
+	TrendingBooksResponseSchema,
 	OPEN_LIBRARY_URL,
 	WORK_URL,
 	WorkResponseSchema
@@ -14,8 +14,9 @@ const REQUEST_INIT: RequestInit = {
 	headers: { 'User-Agent': 'Shelf/1.0 (wtchnm@icloud.com)' }
 }
 
-export function getFavoriteBooks() {
-	return FavoriteBooksResponseSchema.parse(FAVORITE_BOOKS)
+export async function getTrendingBooks() {
+	const books = await db.select().from(Trending).all()
+	return TrendingBooksResponseSchema.parse(books)
 }
 
 async function getWork(id: string) {
@@ -43,8 +44,8 @@ export async function buildFinalBook(workId: string, bookId: string) {
 	return BookSchema.parse({
 		...work,
 		...book,
-		bookId,
-		id: workId,
+		workId,
+		id: bookId,
 		authors: authors.join(', '),
 		coverUrl: book.covers,
 		date: book.publish_date,

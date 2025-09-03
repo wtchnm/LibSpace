@@ -1,6 +1,6 @@
 import { z } from 'astro/zod'
 import { ActionError, defineAction } from 'astro:actions'
-import { db, eq, and, Shelf } from 'astro:db'
+import { db, eq, and, Shelf, sql } from 'astro:db'
 import { auth } from '@/lib/auth'
 import { SHELF_STATUS_ENUM } from '@/lib/shelf'
 
@@ -58,18 +58,12 @@ export const upsert = defineAction({
 		if (entry) {
 			await db
 				.update(Shelf)
-				.set({ ...input, updatedAt: new Date() })
+				.set({ ...input, updatedAt: sql`CURRENT_TIMESTAMP` })
 				.where(eq(Shelf.id, entry.id))
 		} else {
 			await db
 				.insert(Shelf)
-				.values({
-					...input,
-					id: crypto.randomUUID(),
-					userId: session.user.id,
-					createdAt: new Date(),
-					updatedAt: new Date()
-				})
+				.values({ ...input, id: crypto.randomUUID(), userId: session.user.id })
 		}
 
 		return { success: true }
