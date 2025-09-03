@@ -7,6 +7,6 @@ export default defineConfig({
 	image: { domains: ['covers.openlibrary.org'] },
 	experimental: { liveContentCollections: true },
 	vite: { plugins: [tailwindcss()] },
-	adapter: netlify(),
+	adapter: netlify({ devFeatures: false }),
 	integrations: [db()]
 })

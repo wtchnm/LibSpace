@@ -1,4 +1,4 @@
-import { defineAction } from 'astro:actions'
+import { ActionError, defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import { auth } from '@/lib/auth'
 
@@ -11,10 +11,17 @@ const SignUpSchema = SignInSchema.extend({ name: z.string().min(1) })
 export async function withSetCookie<T extends { headers: Headers }>(
 	promise: Promise<T>
 ) {
-	const response = await promise
-	return {
-		...response,
-		headers: { 'set-cookie': response.headers.get('set-cookie') ?? undefined }
+	try {
+		const response = await promise
+		return {
+			...response,
+			headers: { 'set-cookie': response.headers.get('set-cookie') ?? undefined }
+		}
+	} catch (e) {
+		throw new ActionError({
+			code: 'INTERNAL_SERVER_ERROR',
+			message: e instanceof Error ? e.message : 'Unknown'
+		})
 	}
 }
 
