@@ -1,4 +1,4 @@
-import type { LiveDataCollection, LiveDataEntry } from 'astro'
+import type { LiveDataCollection } from 'astro'
 import type { BookSchema } from './schema'
 import type { LiveLoader } from 'astro/loaders'
 import { buildFinalBook, getTrendingBooks } from './api'
