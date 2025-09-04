@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets'
-import type { LiveDataEntry } from 'astro'
 import type { BookSchema } from '@/lib/books/schema'
 
 export interface Props {
-	book: LiveDataEntry<BookSchema>
+	book: Pick<BookSchema, 'bookId' | 'workId' | 'title' | 'coverUrl'>
 	priority?: boolean
 }
 
@@ -12,19 +11,19 @@ const { book, priority = false } = Astro.props
 ---
 
 <a
-	href={`works/${book.data.workId}/books/${book.data.id}`}
+	href={`works/${book.workId}/books/${book.bookId}`}
 	class='flex flex-col items-center gap-2 text-center'
 >
 	<Image
 		width={220}
 		height={320}
-		src={book.data.coverUrl}
+		src={book.coverUrl}
 		alt=''
 		class='h-50 w-32 rounded-xl object-cover'
 		loading='eager'
 		decoding={priority ? 'sync' : 'auto'}
 		fetchpriority={priority ? 'high' : 'auto'}
-		transition:name={`cover-${book.data.id}`}
+		transition:name={`cover-${book.bookId}`}
 	/>
-	<h2 class='text-slate-700'>{book.data.title}</h2>
+	<h2 class='text-slate-700'>{book.title}</h2>
 </a>

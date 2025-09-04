@@ -8,6 +8,7 @@ const COVER_URL = 'https://covers.openlibrary.org/b/id/:id-L.jpg'
 
 export const BookSchema = z.object({
 	id: z.string(),
+	bookId: z.string(),
 	workId: z.string(),
 	title: z.string().optional().default('Title not available'),
 	coverUrl: z.string().optional().default('/not-found.png'),

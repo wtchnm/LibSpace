@@ -38,13 +38,13 @@ const shelfStatusLabel = getShelfStatusLabel(shelf.data?.status)
 				alt={entry.data.title}
 				class='h-80 rounded-xl object-cover'
 				priority
-				transition:name={`cover-${entry.data.id}`}
+				transition:name={`cover-${entry.data.bookId}`}
 			/>
 			<p class='text-sm text-slate-700'>
 				View full details at
 				<a
 					class='text-slate-500 underline'
-					href={`${OPEN_LIBRARY_URL}/books/${entry.data.id}`}
+					href={`${OPEN_LIBRARY_URL}/books/${entry.data.bookId}`}
 					target='_blank'
 					rel='noopener noreferrer'
 				>
@@ -62,8 +62,15 @@ const shelfStatusLabel = getShelfStatusLabel(shelf.data?.status)
 									action={actions.shelf.upsert}
 									class='w-full'
 								>
-									<input type='hidden' name='status' value={status} />
 									<input type='hidden' name='bookId' value={bookId} />
+									<input type='hidden' name='workId' value={workId} />
+									<input type='hidden' name='title' value={entry.data.title} />
+									<input
+										type='hidden'
+										name='coverUrl'
+										value={entry.data.coverUrl}
+									/>
+									<input type='hidden' name='status' value={status} />
 									<Button
 										class:list={{
 											'bg-slate-500!': index === 0,
@@ -77,7 +84,7 @@ const shelfStatusLabel = getShelfStatusLabel(shelf.data?.status)
 							))}
 						{!!shelf.data && (
 							<form method='POST' action={actions.shelf.remove} class='w-full'>
-								<input type='hidden' name='bookId' value={bookId} />
+								<input type='hidden' name='id' value={bookId} />
 								<Button title='Remove from shelf'>
 									<Icon name='remove' />
 								</Button>

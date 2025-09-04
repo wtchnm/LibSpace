@@ -1,8 +1,11 @@
 ---
-import Avatar from '@/components/Avatar.astro'
+import Button from '@/components/Button.astro'
+import Link from '@/components/Link.astro'
+import { auth } from '@/lib/auth'
 import '@/styles/global.css'
 
 const isAuthPage = Astro.url.pathname.startsWith('/auth')
+const session = await auth.api.getSession({ headers: Astro.request.headers })
 ---
 
 <!doctype html>
@@ -47,8 +50,34 @@ const isAuthPage = Astro.url.pathname.startsWith('/auth')
 			class='flex h-16 w-full items-center justify-center border-b border-slate-300'
 		>
 			<nav class='flex w-full max-w-7xl items-center justify-between px-4'>
-				<a href='/' class='text-2xl font-bold'>LibSpace</a>
-				{!isAuthPage && <Avatar />}
+				<div class='flex items-center gap-8'>
+					<a href='/' class='text-2xl font-bold'>LibSpace</a>
+					{
+						session && (
+							<a href='/shelf' class='underline underline-offset-4'>
+								My shelf
+							</a>
+						)
+					}
+				</div>
+				{
+					!isAuthPage &&
+						(session ? (
+							<div class='flex items-center gap-3'>
+								<p class='max-md:hidden'>Hello, {session.user.name}</p>
+								<form method='POST' action='/auth/signOut'>
+									<Button type='submit'>Sign out</Button>
+								</form>
+							</div>
+						) : (
+							<div class='flex gap-3'>
+								<Link href='/auth/signIn'>Sign in</Link>
+								<Link href='/auth/signUp' variant='secondary'>
+									Sign up
+								</Link>
+							</div>
+						))
+				}
 			</nav>
 		</header>
 		<slot />

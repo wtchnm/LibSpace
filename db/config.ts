@@ -61,6 +61,9 @@ const Shelf = defineTable({
 		status: column.text({ enum: SHELF_STATUS_ENUM }),
 		userId: column.text({ references: () => User.columns.id }),
 		bookId: column.text(),
+		workId: column.text(),
+		title: column.text(),
+		coverUrl: column.text(),
 		createdAt: column.date({ default: sql`CURRENT_TIMESTAMP` }),
 		updatedAt: column.date({ default: sql`CURRENT_TIMESTAMP` })
 	}
@@ -69,6 +72,7 @@ const Shelf = defineTable({
 const Trending = defineTable({
 	columns: {
 		id: column.text({ primaryKey: true }),
+		bookId: column.text(),
 		workId: column.text(),
 		title: column.text(),
 		coverUrl: column.text(),

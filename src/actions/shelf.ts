@@ -3,8 +3,31 @@ import { ActionError, defineAction } from 'astro:actions'
 import { db, eq, and, Shelf, sql } from 'astro:db'
 import { auth } from '@/lib/auth'
 import { SHELF_STATUS_ENUM } from '@/lib/shelf'
+import { BookSchema } from '@/lib/books/schema'
 
 const BaseSchema = z.object({ bookId: z.string() })
+
+export const list = defineAction({
+	handler: async (_input, context) => {
+		const session = await auth.api.getSession({
+			headers: context.request.headers
+		})
+		if (!session) {
+			throw new ActionError({
+				code: 'UNAUTHORIZED',
+				message: 'You must be signed in to list books from your shelf'
+			})
+		}
+
+		const entries = await db
+			.select()
+			.from(Shelf)
+			.where(eq(Shelf.userId, session.user.id))
+			.all()
+
+		return entries
+	}
+})
 
 export const get = defineAction({
 	input: BaseSchema,
@@ -33,7 +56,9 @@ export const get = defineAction({
 
 export const upsert = defineAction({
 	accept: 'form',
-	input: BaseSchema.extend({ status: z.enum(SHELF_STATUS_ENUM) }),
+	input: BaseSchema.merge(
+		BookSchema.pick({ title: true, coverUrl: true, workId: true })
+	).extend({ status: z.enum(SHELF_STATUS_ENUM) }),
 	handler: async (input, context) => {
 		const session = await auth.api.getSession({
 			headers: context.request.headers

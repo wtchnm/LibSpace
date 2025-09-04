@@ -1,0 +1,41 @@
+---
+export const prerender = false
+
+import BookPreview from '@/components/BookPreview.astro'
+import Base from '@/layouts/Base.astro'
+import { getShelfStatusLabel, SHELF_STATUS } from '@/lib/shelf'
+import { actions } from 'astro:actions'
+
+const { data, error } = await Astro.callAction(actions.shelf.list, null)
+
+if (error) throw error
+
+const booksByStatus = Object.groupBy(data, e => e.status)
+---
+
+<Base>
+	<main
+		class='flex flex-grow flex-col items-center justify-center gap-8 px-4 pt-8'
+	>
+		<h1 class='text-2xl font-bold'>My shelf</h1>
+		{
+			Object.entries(booksByStatus).map(([status, books], statusIndex) => {
+				return (
+					<div class='flex flex-col gap-4'>
+						<h2 class='text-xl font-bold'>
+							{getShelfStatusLabel(status as SHELF_STATUS)}
+						</h2>
+						<div class='grid grid-cols-2 items-start justify-center gap-2 md:grid-cols-[repeat(5,calc(var(--spacing)*40))]'>
+							{books.map((book, index) => (
+								<BookPreview
+									book={book}
+									priority={statusIndex === 0 && index === 0}
+								/>
+							))}
+						</div>
+					</div>
+				)
+			})
+		}
+	</main>
+</Base>

@@ -11,11 +11,11 @@ import {
 } from './schema'
 
 const REQUEST_INIT: RequestInit = {
-	headers: { 'User-Agent': 'Shelf/1.0 (wtchnm@icloud.com)' }
+	headers: { 'User-Agent': 'LibSpace/1.0 (wtchnm@icloud.com)' }
 }
 
 export async function getTrendingBooks() {
-	const books = await db.select().from(Trending).all()
+	const books = await db.select().from(Trending).limit(10)
 	return TrendingBooksResponseSchema.parse(books)
 }
 
@@ -44,8 +44,9 @@ export async function buildFinalBook(workId: string, bookId: string) {
 	return BookSchema.parse({
 		...work,
 		...book,
+		bookId,
 		workId,
-		id: bookId,
+		id: crypto.randomUUID(),
 		authors: authors.join(', '),
 		coverUrl: book.covers,
 		date: book.publish_date,

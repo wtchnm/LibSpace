@@ -3,7 +3,7 @@ export const prerender = false
 
 import { getLiveCollection } from 'astro:content'
 import { setCacheHeaders } from '@/lib/utils'
-import TrendingBook from '@/components/TrendingBook.astro'
+import BookPreview from '@/components/BookPreview.astro'
 import Base from '@/layouts/Base.astro'
 
 const { entries, error, cacheHint } = await getLiveCollection('books')
@@ -15,7 +15,7 @@ setCacheHeaders(Astro, cacheHint)
 
 <Base>
 	<main
-		class='flex flex-grow flex-col items-center justify-center gap-8 px-4 pt-4'
+		class='flex flex-grow flex-col items-center justify-center gap-8 px-4 pt-8'
 	>
 		<h1 class='text-2xl font-bold'>Trending</h1>
 
@@ -24,7 +24,7 @@ setCacheHeaders(Astro, cacheHint)
 		>
 			{
 				entries.map((book, index) => (
-					<TrendingBook book={book} priority={index === 0} />
+					<BookPreview book={book.data} priority={index === 0} />
 				))
 			}
 		</div>
