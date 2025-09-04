@@ -9,9 +9,21 @@ import {
 	WORK_URL,
 	WorkResponseSchema
 } from './schema'
+import { getStore } from '@netlify/blobs'
 
 const REQUEST_INIT: RequestInit = {
 	headers: { 'User-Agent': 'LibSpace/1.0 (wtchnm@icloud.com)' }
+}
+
+async function fetchWithCache(url: string) {
+	const store = getStore('api-cache')
+	const cached = await store.get(url, { type: 'json' })
+	if (cached) return cached
+
+	const request = await fetch(url, REQUEST_INIT)
+	const data = await request.json()
+	store.setJSON(url, data)
+	return data
 }
 
 export async function getTrendingBooks() {
@@ -20,20 +32,17 @@ export async function getTrendingBooks() {
 }
 
 async function getWork(id: string) {
-	const request = await fetch(WORK_URL.replace(':id', id), REQUEST_INIT)
-	const data = await request.json()
+	const data = await fetchWithCache(WORK_URL.replace(':id', id))
 	return WorkResponseSchema.parse(data)
 }
 
 async function getBook(id: string) {
-	const request = await fetch(BOOK_URL.replace(':id', id), REQUEST_INIT)
-	const data = await request.json()
+	const data = await fetchWithCache(BOOK_URL.replace(':id', id))
 	return BookResponseSchema.parse(data)
 }
 
 async function getAuthor(id: string) {
-	const request = await fetch(`${OPEN_LIBRARY_URL}${id}.json`, REQUEST_INIT)
-	const data = await request.json()
+	const data = await fetchWithCache(`${OPEN_LIBRARY_URL}${id}.json`)
 	return AuthorResponseSchema.parse(data)
 }
 

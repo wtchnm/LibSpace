@@ -2,15 +2,13 @@
 export const prerender = false
 
 import { getLiveCollection } from 'astro:content'
-import { setCacheHeaders } from '@/lib/utils'
 import BookPreview from '@/components/BookPreview.astro'
 import Base from '@/layouts/Base.astro'
 
-const { entries, error, cacheHint } = await getLiveCollection('books')
+const { entries, error } = await getLiveCollection('books')
 
 if (error) throw error
 if (!entries) return Astro.redirect('/404')
-setCacheHeaders(Astro, cacheHint)
 ---
 
 <Base>
