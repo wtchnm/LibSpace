@@ -61,6 +61,7 @@ This project was built to explore a **server-first, progressively enhanced** arc
 
 - **PWA capabilities** - Offline support and app-like experience
 - **User profiles** - Personal shelves and reading progress
+- **Search functionality** - Find books by title, author, or ISBN
 - **Social features** - Reviews, recommendations, and reading lists
 
 ## Contributing
