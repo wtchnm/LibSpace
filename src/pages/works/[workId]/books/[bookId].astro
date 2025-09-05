@@ -10,6 +10,7 @@ import { actions } from 'astro:actions'
 import Button from '@/components/Button.astro'
 import { getShelfStatusLabel, SHELF_STATUS } from '@/lib/shelf'
 import Icon from '@/components/Icon.astro'
+import Input from '@/components/Input.astro'
 
 const { workId = '', bookId = '' } = Astro.params
 const { entry, error } = await getLiveEntry('books', { workId, bookId })
@@ -35,7 +36,7 @@ const shelfStatusLabel = getShelfStatusLabel(shelf.data?.status)
 				priority
 				transition:name={`cover-${entry.data.bookId}`}
 			/>
-			<p class='text-sm text-slate-700'>
+			<p class='text-center text-sm text-slate-700'>
 				View full details at
 				<a
 					class='text-slate-500 underline'
@@ -48,41 +49,66 @@ const shelfStatusLabel = getShelfStatusLabel(shelf.data?.status)
 			</p>
 			{
 				!shelf.error && (
-					<div class='mt-2 flex gap-2'>
-						{Object.values(SHELF_STATUS)
-							.filter(s => s !== shelf.data?.status)
-							.map((status, index) => (
-								<form
-									method='POST'
-									action={actions.shelf.upsert}
-									class='w-full'
-								>
-									<input type='hidden' name='bookId' value={bookId} />
-									<input type='hidden' name='workId' value={workId} />
-									<input type='hidden' name='title' value={entry.data.title} />
-									<input
-										type='hidden'
-										name='coverUrl'
-										value={entry.data.coverUrl}
-									/>
-									<input type='hidden' name='status' value={status} />
-									<Button
-										class:list={{
-											'bg-slate-500!': index === 0,
-											'bg-slate-600!': index === 1
-										}}
-										title={`Set as ${getShelfStatusLabel(status)}`}
+					<div class='mt-2 flex w-full flex-col gap-2'>
+						<div class='flex w-full justify-between'>
+							{Object.values(SHELF_STATUS)
+								.filter(s => s !== shelf.data?.status)
+								.map((status, index) => (
+									<form
+										method='POST'
+										action={actions.shelf[shelf.data ? 'update' : 'add']}
 									>
-										<Icon name={status.toLowerCase()} />
+										<input type='hidden' name='bookId' value={bookId} />
+										<input type='hidden' name='workId' value={workId} />
+										<input
+											type='hidden'
+											name='title'
+											value={entry.data.title}
+										/>
+										<input
+											type='hidden'
+											name='coverUrl'
+											value={entry.data.coverUrl}
+										/>
+										<input type='hidden' name='status' value={status} />
+										<Button
+											class:list={{
+												'bg-slate-500!': index === 0,
+												'bg-slate-600!': index === 1
+											}}
+											title={`Set as ${getShelfStatusLabel(status)}`}
+										>
+											<Icon name={status.toLowerCase()} />
+										</Button>
+									</form>
+								))}
+							{!!shelf.data && (
+								<form method='POST' action={actions.shelf.remove}>
+									<input type='hidden' name='bookId' value={bookId} />
+									<Button title='Remove from shelf'>
+										<Icon name='remove' />
 									</Button>
 								</form>
-							))}
-						{!!shelf.data && (
-							<form method='POST' action={actions.shelf.remove} class='w-full'>
-								<input type='hidden' name='id' value={bookId} />
-								<Button title='Remove from shelf'>
-									<Icon name='remove' />
-								</Button>
+							)}
+						</div>
+						{shelf.data?.status === SHELF_STATUS.READING && (
+							<form
+								method='POST'
+								action={actions.shelf.update}
+								class='flex w-full items-center justify-between'
+							>
+								<input type='hidden' name='bookId' value={bookId} />
+								<Input
+									type='number'
+									name='progress'
+									class='w-16!'
+									value={shelf.data.progress}
+									min={0}
+									max={entry.data.pages}
+									required
+								/>
+								<span>of {entry.data.pages}</span>
+								<Button>Update</Button>
 							</form>
 						)}
 					</div>

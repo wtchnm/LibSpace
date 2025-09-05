@@ -56,11 +56,11 @@ This project was built to explore a **server-first, progressively enhanced** arc
 - **Live content collections** - Dynamic book data loading
 - **Progressive enhancement** - JavaScript-optional by design
 - **Performance optimization** - Intelligent caching and lazy loading
+- **User profiles** - Personal shelves and reading progress
 
 ### 🚧 Planned
 
 - **PWA capabilities** - Offline support and app-like experience
-- **User profiles** - Personal shelves and reading progress
 - **Search functionality** - Find books by title, author, or ISBN
 - **Social features** - Reviews, recommendations, and reading lists
 

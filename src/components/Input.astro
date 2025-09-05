@@ -2,10 +2,22 @@
 export interface Props extends astroHTML.JSX.InputHTMLAttributes {
 	label?: string
 }
-const { label, ...rest } = Astro.props
+const {
+	label,
+	class: className,
+	'class:list': classList,
+	...rest
+} = Astro.props
 ---
 
-<label class='flex w-75 flex-col gap-2'>
-	<span class='text-base text-slate-700'>{label}</span>
-	<input class='rounded-lg border border-slate-300 p-2' {...rest} />
+<label class='flex flex-col gap-2'>
+	{label && <span class='text-base text-slate-700'>{label}</span>}
+	<input
+		class:list={[
+			'rounded-lg border border-slate-300 p-2',
+			className,
+			classList
+		]}
+		{...rest}
+	/>
 </label>

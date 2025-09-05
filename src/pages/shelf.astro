@@ -18,6 +18,13 @@ const booksByStatus = Object.groupBy(data, e => e.status)
 	>
 		<h1 class='text-2xl font-bold'>My shelf</h1>
 		{
+			data.length === 0 && (
+				<p class='text-center text-slate-700'>
+					Your shelf is empty. Start adding books to your shelf!
+				</p>
+			)
+		}
+		{
 			Object.entries(booksByStatus).map(([status, books], statusIndex) => {
 				return (
 					<div class='flex flex-col gap-4'>

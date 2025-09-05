@@ -55,11 +55,9 @@ const Verification = defineTable({
 	}
 })
 
-const Shelf = defineTable({
+const Trending = defineTable({
 	columns: {
 		id: column.text({ primaryKey: true }),
-		status: column.text({ enum: SHELF_STATUS_ENUM }),
-		userId: column.text({ references: () => User.columns.id }),
 		bookId: column.text(),
 		workId: column.text(),
 		title: column.text(),
@@ -69,13 +67,16 @@ const Shelf = defineTable({
 	}
 })
 
-const Trending = defineTable({
+const Shelf = defineTable({
 	columns: {
 		id: column.text({ primaryKey: true }),
+		userId: column.text({ references: () => User.columns.id }),
 		bookId: column.text(),
 		workId: column.text(),
+		status: column.text({ enum: SHELF_STATUS_ENUM }),
 		title: column.text(),
 		coverUrl: column.text(),
+		progress: column.number({ default: 0 }),
 		createdAt: column.date({ default: sql`CURRENT_TIMESTAMP` }),
 		updatedAt: column.date({ default: sql`CURRENT_TIMESTAMP` })
 	}

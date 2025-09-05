@@ -6,6 +6,7 @@ import { SHELF_STATUS_ENUM } from '@/lib/shelf'
 import { BookSchema } from '@/lib/books/schema'
 
 const BaseSchema = z.object({ bookId: z.string() })
+const BaseUpdateSchema = z.object({ status: z.enum(SHELF_STATUS_ENUM) })
 
 export const list = defineAction({
 	handler: async (_input, context) => {
@@ -54,11 +55,37 @@ export const get = defineAction({
 	}
 })
 
-export const upsert = defineAction({
+export const add = defineAction({
 	accept: 'form',
-	input: BaseSchema.merge(
+	input: BaseSchema.merge(BaseUpdateSchema).merge(
 		BookSchema.pick({ title: true, coverUrl: true, workId: true })
-	).extend({ status: z.enum(SHELF_STATUS_ENUM) }),
+	),
+	handler: async (input, context) => {
+		const session = await auth.api.getSession({
+			headers: context.request.headers
+		})
+
+		if (!session) {
+			throw new ActionError({
+				code: 'UNAUTHORIZED',
+				message:
+					'You must be signed in to insert or update books from your shelf'
+			})
+		}
+
+		await db
+			.insert(Shelf)
+			.values({ ...input, id: crypto.randomUUID(), userId: session.user.id })
+
+		return { success: true }
+	}
+})
+
+export const update = defineAction({
+	accept: 'form',
+	input: BaseSchema.merge(BaseUpdateSchema.partial()).extend({
+		progress: z.coerce.number().optional()
+	}),
 	handler: async (input, context) => {
 		const session = await auth.api.getSession({
 			headers: context.request.headers
@@ -86,9 +113,11 @@ export const upsert = defineAction({
 				.set({ ...input, updatedAt: sql`CURRENT_TIMESTAMP` })
 				.where(eq(Shelf.id, entry.id))
 		} else {
-			await db
-				.insert(Shelf)
-				.values({ ...input, id: crypto.randomUUID(), userId: session.user.id })
+			throw new ActionError({
+				code: 'NOT_FOUND',
+				message:
+					'Book not found in your shelf. Please add it first before updating.'
+			})
 		}
 
 		return { success: true }
