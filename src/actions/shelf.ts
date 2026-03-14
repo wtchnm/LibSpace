@@ -85,9 +85,9 @@ export const add = defineAction({
 
 export const update = defineAction({
 	accept: 'form',
-	input: BaseSchema.extend(BaseUpdateSchema.partial()).extend({
-		progress: z.coerce.number().optional()
-	}),
+	input: z
+		.object({ ...BaseSchema.shape, ...BaseUpdateSchema.partial().shape })
+		.extend({ progress: z.coerce.number().optional() }),
 	handler: async (input, context) => {
 		const session = await auth.api.getSession({
 			headers: context.request.headers
