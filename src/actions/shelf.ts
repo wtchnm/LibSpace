@@ -57,9 +57,11 @@ export const get = defineAction({
 
 export const add = defineAction({
 	accept: 'form',
-	input: BaseSchema.merge(BaseUpdateSchema).merge(
-		BookSchema.pick({ title: true, coverUrl: true, workId: true })
-	),
+	input: z.object({
+		...BaseSchema.shape,
+		...BaseUpdateSchema.shape,
+		...BookSchema.pick({ title: true, coverUrl: true, workId: true }).shape
+	}),
 	handler: async (input, context) => {
 		const session = await auth.api.getSession({
 			headers: context.request.headers
@@ -83,7 +85,7 @@ export const add = defineAction({
 
 export const update = defineAction({
 	accept: 'form',
-	input: BaseSchema.merge(BaseUpdateSchema.partial()).extend({
+	input: BaseSchema.extend(BaseUpdateSchema.partial()).extend({
 		progress: z.coerce.number().optional()
 	}),
 	handler: async (input, context) => {

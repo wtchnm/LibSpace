@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
-@theme {
-	--font-sans: Inter, 'Inter fallback';
+@theme inline {
+	--font-sans: var(--font-roboto);
 }
 
 @view-transition {

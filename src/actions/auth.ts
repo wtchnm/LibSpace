@@ -1,9 +1,9 @@
 import { ActionError, defineAction } from 'astro:actions'
-import { z } from 'astro:schema'
+import { z } from 'astro/zod'
 import { auth } from '@/lib/auth'
 
 const SignInSchema = z.object({
-	email: z.string().email(),
+	email: z.email(),
 	password: z.string().min(8).max(128)
 })
 const SignUpSchema = SignInSchema.extend({ name: z.string().min(1) })
