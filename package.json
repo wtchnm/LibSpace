@@ -27,7 +27,7 @@
 		"@astrojs/db": "0.20.0",
 		"@astrojs/netlify": "7.0.2",
 		"@netlify/blobs": "10.7.2",
-		"astro": "6.0.4",
+		"astro": "6.1.6",
 		"better-auth": "1.5.5",
 		"hast-util-is-css-link": "3.0.1",
 		"rehype": "13.0.2",
