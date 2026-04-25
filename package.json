@@ -14,21 +14,21 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.8",
-		"@tailwindcss/vite": "4.2.2",
+		"@tailwindcss/vite": "4.2.4",
 		"@types/hast": "3.0.4",
-		"prettier": "3.8.1",
+		"prettier": "3.8.3",
 		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "0.7.2",
+		"prettier-plugin-tailwindcss": "0.7.3",
 		"sharp": "0.34.5",
-		"tailwindcss": "4.2.2",
-		"typescript": "6.0.2"
+		"tailwindcss": "4.2.4",
+		"typescript": "6.0.3"
 	},
 	"dependencies": {
 		"@astrojs/db": "0.20.1",
-		"@astrojs/netlify": "7.0.5",
+		"@astrojs/netlify": "7.0.8",
 		"@netlify/blobs": "10.7.4",
-		"astro": "6.1.1",
-		"better-auth": "1.5.6",
+		"astro": "6.1.9",
+		"better-auth": "1.6.9",
 		"hast-util-is-css-link": "3.0.1",
 		"rehype": "13.0.2",
 		"unist-util-visit": "5.1.0"
